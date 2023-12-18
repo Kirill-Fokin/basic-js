@@ -17,12 +17,9 @@ const { NotImplementedError } = require('../extensions/index.js');
 function countCats(arr) {
   let res = 0;
 
-  for (let i = 0; i < arr.length; i++) {
-  
-  res += arr[i].filter(item => item == '^^').length
-  
+  for (let kek of arr) {
+    res += kek.filter(item => item == '^^').length
   }
-  
   return res
 }
 
