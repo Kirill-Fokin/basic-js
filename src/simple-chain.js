@@ -13,10 +13,11 @@ const chainMaker = {
   },
   addLink(val) {
   
+  this.length++;
   },
-  removeLink(pos) {
-    throw new Error("You can't remove incorrect link!");
-   
+  removeLink(/* position */) {
+    throw new NotImplementedError('Not implemented');
+    // remove line with error and write your code here
   },
   reverseChain() {
     throw new NotImplementedError('Not implemented');
