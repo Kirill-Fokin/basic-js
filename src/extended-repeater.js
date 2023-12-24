@@ -16,35 +16,41 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function repeater(str, options) {
-  let res = '';
-  let fragment = '';
-  
-  for (let i = 0; i < options.repeatTimes; i++) {
-     fragment = '';
-    for (let j = 0; j < options.additionRepeatTimes; j++) {
-      if (i == 2 && j  === options.additionRepeatTimes -1) {
-       fragment += options.addition 
-      } else {
-     
-     if (j === options.additionRepeatTimes -1) {
-       fragment += options.addition + options.separator
-     } else {
-     fragment += options.addition + options.additionSeparator 
-    
-     }  
-        
-      }
-      
-    }
-    
-    res  += str + fragment
-    
-     
-   
-    
-
+  if (str === null) {
+    str = 'null'
   }
-return (res)
+  const repeatTimes = options.repeatTimes ?? 1;
+  let addition = options.addition;
+  if (addition === undefined) addition = '';
+
+  if ( addition === null )  addition  = 'null'
+  const separator = options.separator ?? '+'
+  const additionRepeatTimes = options.additionRepeatTimes ?? 1;
+  let additionSeparator = options.additionSeparator === undefined ? '|' : String(options.additionSeparator)  ;
+
+
+  
+  let res = '';
+  
+  for (let i = 0; i < repeatTimes ; i++) {
+   let fr  = '';
+    
+    for (let j = 0; j < additionRepeatTimes; j++) {
+      
+      if ( j == additionRepeatTimes - 1) {
+      fr += addition
+      } else {
+        fr += addition  + additionSeparator;
+      }
+    }
+    if (i == repeatTimes - 1  ) {
+       res += str  + fr 
+    } else {
+      res += str  + fr + separator    
+    }
+  }
+
+  return res;
 }
    
 
