@@ -4,7 +4,7 @@ const { NotImplementedError } = require('../extensions/index.js');
  * Create transformed array based on the control sequences that original
  * array contains
  * 
- * @param {Array} arr initial array
+ * @param {Array}  initial array
  * @returns {Array} transformed array
  * 
  * @example
@@ -28,7 +28,6 @@ function transform(arr) {
     if (current === '--double-next') {
       arrayCopy.splice(i, 1)
       if ( i + 1 === arrayCopy.length  + 1 ) {
-        console.log('слишком много')
         continue;
       } else {
         arrayCopy.splice(i, 0, arr[i])
@@ -37,7 +36,7 @@ function transform(arr) {
     
      if (current === '--double-prev') {
       arrayCopy.splice(i, 1)
-       console.log(arrayCopy)
+
       if ( i - 1 < 0 ) {
         console.log('слишком мало')
         continue;
@@ -50,7 +49,7 @@ function transform(arr) {
       arrayCopy.splice(i, 1)
        
       if ( i - 1 < 0 ) {
-        console.log('слишком мало discard')
+
         continue;
       } else {
         arrayCopy.splice(i - 1, 1,)

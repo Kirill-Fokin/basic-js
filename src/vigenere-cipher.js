@@ -31,24 +31,23 @@ class VigenereCipheringMachine {
     return (n >= 97 && n <= 122) ? true : false;
   }
  
-  encrypt(word, key){
-    if (word === undefined || key === undefined) {
-      throw new Error ('Incorrect arguments!');
-    }   
-
-    let res = "";res
+    encrypt(word, key){
+      if (word === undefined || key === undefined) {
+        throw new Error ('Incorrect arguments!');
+     }
+      let res = "";res
       for(let i = 0, j = 0; i < word.length; i++){
         let cur = word[i];
-
-        if (this.isUpperCase(cur)) {
+    
+        if(this.isUpperCase(cur)){
           let upperLetter = ((cur.charCodeAt() - 65) + (key[j%key.length].toUpperCase().charCodeAt() - 65)) % 26;
           res += String.fromCharCode(upperLetter+65);
           j++;
-        } else if (this.isLowerCase(cur)) {
+        }else if(this.isLowerCase(cur)){
           let lowerLetter = ((cur.charCodeAt() - 97) + (key[j%key.length].toLowerCase().charCodeAt() - 97)) % 26;
           res += String.fromCharCode(lowerLetter + 97);
           j++;
-        } else {
+        }else{
           res += cur;
         }
       }
@@ -60,25 +59,7 @@ class VigenereCipheringMachine {
     if (word === undefined || key === undefined) {
       throw new Error ('Incorrect arguments!');
     }
-    let res = "";res
-    for(let i = 0, j = 0; i < word.length; i++){
-      let cur = word[i];
-
-      if (this.isUpperCase(cur)) {
-        let upperLetter = ((cur.charCodeAt() - 65) + (key[j%key.length].toUpperCase().charCodeAt() - 65)) % 26;
-        res += String.fromCharCode(upperLetter + 65);
-        j++;
-      } else if (this.isLowerCase(cur)) {
-        let lowerLetter = ((cur.charCodeAt() - 97) + (key[j%key.length].toLowerCase().charCodeAt() - 97)) % 26;
-        res += String.fromCharCode(lowerLetter + 97);
-        j++;
-      } else {
-        res += cur;
-      }
-    }
-    return res.toUpperCase();
   }
-  
 }
 
 module.exports = {

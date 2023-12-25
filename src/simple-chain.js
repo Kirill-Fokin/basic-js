@@ -4,31 +4,76 @@ const { NotImplementedError } = require('../extensions/index.js');
  * Implement chainMaker object according to task description
  * 
  */
+
+
 const chainMaker = {
-  length : 0,
-  value : '',
+  
+  arr : [],
+
+  createChain() {
+    console.log('final arr: '  + this.arr)
+    let res = '';
+    for (let i = 0; i < this.arr.length; i++) {
+      res  += `( ${this.arr[i]} )~~`
+    }
+    return res
+  },
 
   getLength() {
-   return this.length;
+   return this.arr.length;
   },
+
   addLink(val) {
-  
-  this.length++;
+    if (val === Infinity) { 
+      this.arr.push('Infinity');
+      return this
+    }
+  if (val === undefined) {
+    this.arr.push(' ');
+    // console.log(this.arr)
+    return this
+  } else if (typeof val === 'function') {
+  this.arr.push(val.toString());
+  // console.log(this.arr)
+   return this
+  } else {
+    this.arr.push(val + '');
+    // console.log(this.arr)
+     return this
+
+  }
   },
-  removeLink(/* position */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+
+  removeLink(pos) {
+   if (pos > this.arr.length  - 1   || pos == 0 || typeof pos !== 'number'|| pos < 0 ) {
+    try {throw new Error('You can\'t remove incorrect link!')}
+    catch (err) {
+
+    }
+   } 
+   this.arr.splice(pos - 1 , 1)
+   return this
   },
+
   reverseChain() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    this.arr.reverse()
+    return this
+
   },
   finishChain() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    let res = '';
+    for (let i = 0; i < this.arr.length; i++) {
+      res  += `( ${this.arr[i]} )~~`
+    }
+    this.arr.length = 0;
+    return res.slice(0,- 2)
+  
   }
 };
+
 
 module.exports = {
   chainMaker
 };
+// chainMaker.addLink('GHI').addLink(null).reverseChain().addLink(333).reverseChain().
+// reverseChain().addLink(0).reverseChain().reverseChain().addLink('GHI').finishChain(), 
