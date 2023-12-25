@@ -5,8 +5,11 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  */
 
+// this.memory = [];
 
 const chainMaker = {
+
+
   
   arr : [],
 
@@ -45,11 +48,11 @@ const chainMaker = {
   },
 
   removeLink(pos) {
-   if (pos > this.arr.length  - 1   || pos == 0 || typeof pos !== 'number'|| pos < 0 ) {
-    try {throw new Error('You can\'t remove incorrect link!')}
-    catch (err) {
-
-    }
+   
+   if (pos > this.arr.length  - 1   || pos == 0 || typeof pos !== 'number'|| pos < 0 ||this.arr.length === 0 ) {
+    
+      throw new Error('You can\'t remove incorrect link!')
+   
    } 
    this.arr.splice(pos - 1 , 1)
    return this
@@ -66,6 +69,7 @@ const chainMaker = {
       res  += `( ${this.arr[i]} )~~`
     }
     this.arr.length = 0;
+    this.memory = []
     return res.slice(0,- 2)
   
   }

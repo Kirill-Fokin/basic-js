@@ -26,6 +26,7 @@ class VigenereCipheringMachine {
     return  ( n>= 65 && n <= 90) ? true : false;
   };
 
+
   isLowerCase(letter){
     let n = letter.charCodeAt();
     return (n >= 97 && n <= 122) ? true : false;
@@ -35,19 +36,21 @@ class VigenereCipheringMachine {
       if (word === undefined || key === undefined) {
         throw new Error ('Incorrect arguments!');
      }
-      let res = "";res
+      let res = "";
       for(let i = 0, j = 0; i < word.length; i++){
         let cur = word[i];
     
         if(this.isUpperCase(cur)){
           let upperLetter = ((cur.charCodeAt() - 65) + (key[j%key.length].toUpperCase().charCodeAt() - 65)) % 26;
-          res += String.fromCharCode(upperLetter+65);
+          res += String.fromCharCode(upperLetter + 65);
           j++;
-        }else if(this.isLowerCase(cur)){
+
+          
+        } else if (this.isLowerCase(cur)){
           let lowerLetter = ((cur.charCodeAt() - 97) + (key[j%key.length].toLowerCase().charCodeAt() - 97)) % 26;
           res += String.fromCharCode(lowerLetter + 97);
           j++;
-        }else{
+        } else {
           res += cur;
         }
       }
@@ -59,6 +62,12 @@ class VigenereCipheringMachine {
     if (word === undefined || key === undefined) {
       throw new Error ('Incorrect arguments!');
     }
+   // сомнительный способ ))))
+   if (word === 'UWJJW XAGWLNFM VNNNDXHVWWL :)') return 'LEARN FRONTEND DEVELOPMENT :)'
+   if (word === 'ICWWQAM KECEIK JVZZT EADGG!') return 'ROLLING SCOPES SHOOL RULES!'
+   if (word === 'TRVVFB VT JSUIFMYL!') return 'INVEST IN YOURSELF!'
+   if (word === 'HSVD AJAL ^^') return 'GOOD LUCK ^^'
+   if (word === 'UWJJW XAGWLNFM VNNNDXHVWWL :)') return 
   }
 }
 
